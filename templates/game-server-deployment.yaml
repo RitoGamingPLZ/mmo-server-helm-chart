@@ -1,8 +1,8 @@
-{{- range .Values.game-server.zones }}
+{{- range .Values.server.zones }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $.Values.game-server.deployment.name }}-{{ .id }}
+  name: {{ $.Values.server.deployment.name }}-{{ .id }}
   namespace: {{ $.Release.Namespace }}
   labels:
     zone: {{ .id }}
@@ -17,28 +17,28 @@ spec:
       labels:
         app: game-server
         zone: {{ .id }}
-        version: {{ coalesce $.Values.game-server.version $.Values.game-server.image.tag | quote }}
+        version: {{ coalesce $.Values.server.version $.Values.server.image.tag | quote }}
     spec:
       terminationGracePeriodSeconds: 65
       containers:
-        - name: game-server-zone-{{ .id }}-{{ $.Values.game-server.image.tag | quote }}
-          image: "{{ $.Values.game-server.image.repository }}:{{ $.Values.game-server.image.tag }}"
-          imagePullPolicy: {{ $.Values.game-server.image.pullPolicy }}
+        - name: game-server-zone-{{ .id }}-{{ $.Values.server.image.tag | quote }}
+          image: "{{ $.Values.server.image.repository }}:{{ $.Values.server.image.tag }}"
+          imagePullPolicy: {{ $.Values.server.image.pullPolicy }}
           args:
             - "--zone-id={{ .id }}"
           ports:
-            - containerPort: {{ $.Values.game-server.wsPort }}
+            - containerPort: {{ $.Values.server.wsPort }}
           resources:
             requests:
-              cpu: {{ $.Values.game-server.deployment.requests.cpu }}
-              memory: {{ $.Values.game-server.deployment.requests.memory }}
+              cpu: {{ $.Values.server.deployment.requests.cpu }}
+              memory: {{ $.Values.server.deployment.requests.memory }}
             limits:
-              cpu: {{ $.Values.game-server.deployment.limits.cpu }}
-              memory: {{ $.Values.game-server.deployment.limits.memory }}
+              cpu: {{ $.Values.server.deployment.limits.cpu }}
+              memory: {{ $.Values.server.deployment.limits.memory }}
           readinessProbe:
             httpGet:
               path: /healthz
-              port: {{ $.Values.game-server.httpPort }}
+              port: {{ $.Values.server.httpPort }}
             initialDelaySeconds: 5
             periodSeconds: 5
           lifecycle:

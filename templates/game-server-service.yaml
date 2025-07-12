@@ -1,8 +1,8 @@
-{{- range .Values.game-server.zones }}
+{{- range .Values.server.zones }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $.Values.game-server.service.name }}-{{ .id }}
+  name: {{ $.Values.server.service.name }}-{{ .id }}
   namespace: {{ $.Release.Namespace }}
   labels:
     app: game-server
@@ -11,12 +11,12 @@ spec:
   selector:
     app: game-server
     zone: {{ .id }}
-    version: {{ coalesce $.Values.game-server.version $.Values.game-server.image.tag | quote }}
+    version: {{ coalesce $.Values.server.version $.Values.server.image.tag | quote }}
   ports:
     - name: ws
-      port: {{ $.Values.game-server.wsPort }}
-      targetPort: {{ $.Values.game-server.wsPort }}
+      port: {{ $.Values.server.wsPort }}
+      targetPort: {{ $.Values.server.wsPort }}
     - name: http
-      port: {{ $.Values.game-server.httpPort }}
-      targetPort: {{ $.Values.game-server.httpPort }}
+      port: {{ $.Values.server.httpPort }}
+      targetPort: {{ $.Values.server.httpPort }}
 {{- end }}
