@@ -23,5 +23,4 @@ spec:
       backendRefs:
         - name: {{ $.Values.game-server.service.name }}-{{ .id }}
           port: {{ $.Values.game-server.wsPort }}
----
 {{- end }}

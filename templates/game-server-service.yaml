@@ -19,5 +19,4 @@ spec:
     - name: http
       port: {{ $.Values.game-server.httpPort }}
       targetPort: {{ $.Values.game-server.httpPort }}
----
 {{- end }}
