@@ -19,6 +19,7 @@ spec:
         - type: URLRewrite
           urlRewrite:
             path:
+              type: ReplacePrefixMatch
               replacePrefixMatch: ""
       backendRefs:
         - name: {{ $.Values.server.service.name }}-{{ .id }}
