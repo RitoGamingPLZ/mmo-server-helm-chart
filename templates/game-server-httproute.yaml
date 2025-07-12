@@ -1,4 +1,3 @@
-
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: HTTPRoute
 metadata:
@@ -11,6 +10,7 @@ spec:
   hostnames:
     - "{{ $.Values.server.hostname }}"
   rules:
+    {{- range .Values.server.zones }}
     - matches:
         - path:
             type: PathPrefix
@@ -24,3 +24,5 @@ spec:
       backendRefs:
         - name: {{ $.Values.server.service.name }}-{{ .id }}
           port: {{ $.Values.server.wsPort }}
+          protocol: "WS"
+    {{- end }}
