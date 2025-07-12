@@ -1,4 +1,0 @@
-apiVersion: v2
-name: game-server
-description: MMO game server archectiture
-version: 0.1.0
