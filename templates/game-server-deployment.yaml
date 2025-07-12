@@ -24,8 +24,6 @@ spec:
         - name: game-server-zone-{{ .id }}-{{ $.Values.server.image.tag  }}
           image: "{{ $.Values.server.image.repository }}:{{ $.Values.server.image.tag }}"
           imagePullPolicy: {{ $.Values.server.image.pullPolicy }}
-          args:
-            - "--zone-id={{ .id }}"
           ports:
             - containerPort: {{ $.Values.server.wsPort }}
           resources:
