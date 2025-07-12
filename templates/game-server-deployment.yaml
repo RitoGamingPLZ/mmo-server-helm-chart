@@ -33,12 +33,12 @@ spec:
             limits:
               cpu: {{ $.Values.server.deployment.limits.cpu }}
               memory: {{ $.Values.server.deployment.limits.memory }}
-          readinessProbe:
-            httpGet:
-              path: /healthz
-              port: {{ $.Values.server.httpPort }}
-            initialDelaySeconds: 5
-            periodSeconds: 5
+          # readinessProbe:
+          #   httpGet:
+          #     path: /healthz
+          #     port: {{ $.Values.server.httpPort }}
+          #   initialDelaySeconds: 5
+          #   periodSeconds: 5
           lifecycle:
             preStop:
               exec:
