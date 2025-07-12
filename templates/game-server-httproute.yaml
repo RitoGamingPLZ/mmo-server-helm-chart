@@ -16,7 +16,7 @@ spec:
             type: PathPrefix
             value: "/{{ .id }}"
       filters:
-        - type: RequestRewrite
+        - type: RequestRedirect
           requestRewrite:
             path:
               replacePrefixMatch: ""
