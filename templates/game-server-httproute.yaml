@@ -16,8 +16,8 @@ spec:
             type: PathPrefix
             value: "/{{ .id }}"
       filters:
-        - type: RequestRedirect
-          requestRewrite:
+        - type: URLRewrite
+          urlRewrite:
             path:
               replacePrefixMatch: ""
       backendRefs:
