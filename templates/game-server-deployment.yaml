@@ -17,11 +17,11 @@ spec:
       labels:
         app: game-server
         zone: {{ .id }}
-        version: {{ coalesce $.Values.server.version $.Values.server.image.tag | quote }}
+        version: {{ coalesce $.Values.server.version $.Values.server.image.tag  }}
     spec:
       terminationGracePeriodSeconds: 65
       containers:
-        - name: game-server-zone-{{ .id }}-{{ $.Values.server.image.tag | quote }}
+        - name: game-server-zone-{{ .id }}-{{ $.Values.server.image.tag  }}
           image: "{{ $.Values.server.image.repository }}:{{ $.Values.server.image.tag }}"
           imagePullPolicy: {{ $.Values.server.image.pullPolicy }}
           args:

@@ -11,7 +11,7 @@ spec:
   selector:
     app: game-server
     zone: {{ .id }}
-    version: {{ coalesce $.Values.server.version $.Values.server.image.tag | quote }}
+    version: {{ coalesce $.Values.server.version $.Values.server.image.tag  }}
   ports:
     - name: ws
       port: {{ $.Values.server.wsPort }}
