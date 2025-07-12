@@ -1,0 +1,23 @@
+{{- range .Values.game-server.zones }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Values.game-server.service.name }}-{{ .id }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    app: game-server
+    zone: {{ .id }}
+spec:
+  selector:
+    app: game-server
+    zone: {{ .id }}
+    version: {{ coalesce $.Values.game-server.version $.Values.game-server.image.tag | quote }}
+  ports:
+    - name: ws
+      port: {{ $.Values.game-server.wsPort }}
+      targetPort: {{ $.Values.game-server.wsPort }}
+    - name: http
+      port: {{ $.Values.game-server.httpPort }}
+      targetPort: {{ $.Values.game-server.httpPort }}
+---
+{{- end }}
