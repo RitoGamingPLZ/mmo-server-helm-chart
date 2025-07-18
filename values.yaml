@@ -10,16 +10,16 @@ server:
   deployment:
     name: mmo-game-server
     requests:
-      cpu: "2"
+      cpu: "3"
       memory: "512Mi"
     limits:
-      cpu: "4"
+      cpu: "3"
       memory: "2Gi"
 
   autoscaler:
     name: mmo-game-autoscaler
     minReplicas: 1
-    maxReplicas: 3
+    maxReplicas: 2
 
   service:
     name: mmo-game-server-lb
