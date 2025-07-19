@@ -21,7 +21,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 65
       containers:
-        - name: game-server-{{ .id }}-{{ $.Values.server.image.tag  }}
+        - name: game-server-{{ .id }}
           image: "{{ $.Values.server.image.repository }}:{{ $.Values.server.image.tag }}"
           imagePullPolicy: {{ $.Values.server.image.pullPolicy }}
           ports:
